@@ -17,7 +17,7 @@ RUN npm install
 COPY . .
 
 # build the project
-RUN npm run build
+# RUN npm run build
 
 
 # use the node-alpine version here again
