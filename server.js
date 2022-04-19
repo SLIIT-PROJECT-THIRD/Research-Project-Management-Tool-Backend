@@ -28,7 +28,7 @@ app.use(bodyParser.json());
 //Route
 app.get('*', (req, res) => {
     res.json({
-        data: 'You reached nodejs api for react node crud app'
+        data: 'You reached nodejs api for react node crud app now'
     });
 });
 
