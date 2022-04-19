@@ -11,10 +11,10 @@ build-docker:
   steps:
     - internal/docker-build:
         docker-file: Dockerfile
-        image-name: research-tool-app-deploy
-deploy-heroku:
-  steps:
-    - heroku-deploy:
-        key: $HEROKU_KEY
-        user: $HEROKU_USER
-        app-name: $HEROKU_APP
+        image-name: research-tool-backend
+    - internal/docker-push:
+        image-name: research-tool-backend
+        username: $USERNAME
+        password: $PASSWORD
+        registry: azureappdeploy.azurecr.io
+        repository: $USERNAME/research-tool-backend
