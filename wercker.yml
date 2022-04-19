@@ -16,5 +16,5 @@ build-docker:
         image-name: research-tool-backend
         username: $USERNAME
         password: $PASSWORD
-        registry: azureappdeploy.azurecr.io
+        registry: afsliit.azurecr.io
         repository: $USERNAME/research-tool-backend
