@@ -1,0 +1,20 @@
+box: node:latest
+build:
+  steps:
+    - npm-install
+    - script:
+        name: echo nodejs information
+        code: |
+          echo "node version $(node -v) running"
+          echo "npm version $(npm -v) running"
+build-docker:
+  steps:
+    - internal/docker-build:
+        docker-file: Dockerfile
+        image-name: research-tool-app-deploy
+deploy-heroku:
+  steps:
+    - heroku-deploy:
+        key: $HEROKU_KEY
+        user: $HEROKU_USER
+        app-name: $HEROKU_APP
