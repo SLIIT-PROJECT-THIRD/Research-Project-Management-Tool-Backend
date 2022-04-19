@@ -19,6 +19,7 @@ COPY . .
 # build the project
 # RUN npm run build
 
+
 # use the node-alpine version here again
 FROM node:17-alpine3.14
 
