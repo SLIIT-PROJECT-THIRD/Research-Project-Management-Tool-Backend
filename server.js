@@ -6,7 +6,7 @@ const mongoose = require('mongoose');
 require('dotenv').config();
 
 // import routes
-// const sampleRoute = require('./routes/post');
+const groupRoute = require('./routes/Group');
 
 // App
 const app = express();
@@ -26,14 +26,14 @@ app.use(morgan('dev'));
 app.use(bodyParser.json());
 
 //Route
-app.get('*', (req, res) => {
-    res.json({
-        data: 'You reached nodejs api for react node crud app now'
-    });
-});
+// app.get('*', (req, res) => {
+//     res.json({
+//         data: 'You reached nodejs api for react node crud app now'
+//     });
+// });
 
 // Route Middleware
-// app.use('/api', postRoutes);
+app.use('/group', groupRoute);
 
 // Post
 const port = process.env.PORT || 8000;
