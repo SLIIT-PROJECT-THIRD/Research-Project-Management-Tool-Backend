@@ -24,8 +24,7 @@ const GroupSchema = new mongoose.Schema({
         required: true
     },
     groupMembers: {
-        type: Array,
-        "default": []
+        type: Array
     }
 }, { timestamps: true });
 
