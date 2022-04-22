@@ -7,14 +7,9 @@ const express = require('express');
 const router = express.Router();
 
 // Import Controller Methods
-const { create, getAllGroups, getById, update } = require('../controller/Group');
+const { create } = require('../controller/Student');
 
 //Controller Routes
 router.post('/', create);
-
-router.get('/', getAllGroups);
-router.get('/:_id', getById);
-
-router.patch('/:_id', update);
 
 module.exports = router;

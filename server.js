@@ -7,6 +7,7 @@ require('dotenv').config();
 
 // import routes
 const groupRoute = require('./routes/Group');
+const studentRoute = require('./routes/Student');
 
 // App
 const app = express();
@@ -34,6 +35,7 @@ app.use(bodyParser.json());
 
 // Route Middleware
 app.use('/group', groupRoute);
+app.use('/student', studentRoute);
 
 // Post
 const port = process.env.PORT || 8000;
