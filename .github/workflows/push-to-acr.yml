@@ -5,7 +5,7 @@ on:
     branches: [ main ]
 
 env:
-  IMAGE_NAME: research-tool-backend
+  IMAGE_NAME: afsliit/research-tool-backend
 
 jobs:
   build:
@@ -23,5 +23,5 @@ jobs:
           password: ${{ secrets.ACR_PASSWORD }}
 
       - run: |
-          docker build . -t afsliit.azurecr.io/${{env.IMAGE_NAME}}:${{ github.sha }}
-          docker push afsliit.azurecr.io/${{env.IMAGE_NAME}}:${{ github.sha }}
+          docker build . -t afsliit.azurecr.io/${{env.IMAGE_NAME}}:latest
+          docker push afsliit.azurecr.io/${{env.IMAGE_NAME}}:latest
