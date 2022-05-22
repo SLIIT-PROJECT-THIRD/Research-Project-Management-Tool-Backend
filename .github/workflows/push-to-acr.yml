@@ -23,5 +23,5 @@ jobs:
           password: ${{ secrets.ACR_PASSWORD }}
 
       - run: |
-          docker build . -t afsliit.azurecr.io/${{IMAGE_NAME}}:${{ github.sha }}
-          docker push afsliit.azurecr.io/${{IMAGE_NAME}}:${{ github.sha }}
+          docker build . -t afsliit.azurecr.io/${{env.IMAGE_NAME}}:${{ github.sha }}
+          docker push afsliit.azurecr.io/${{env.IMAGE_NAME}}:${{ github.sha }}
