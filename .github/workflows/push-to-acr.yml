@@ -1,0 +1,27 @@
+name: Docker
+
+on:
+  push:
+    branches: [ main ]
+
+env:
+  IMAGE_NAME: research-tool-backend
+
+jobs:
+  build:
+    name: Build container image
+    runs-on: ubuntu-latest
+    environment: 
+      name: Azure-WebApp
+      url: https://research-tool-backend.azurewebsites.net/
+    steps:
+      - uses: actions/checkout@v2
+      - uses: azure/docker-login@v1
+        with:
+          login-server: afsliit.azurecr.io
+          username: ${{ secrets.ACR_USERNAME }}
+          password: ${{ secrets.ACR_PASSWORD }}
+
+      - run: |
+          docker build . -t afsliit.azurecr.io/${{IMAGE_NAME}}:${{ github.sha }}
+          docker push afsliit.azurecr.io/${{IMAGE_NAME}}:${{ github.sha }}
