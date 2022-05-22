@@ -13,6 +13,6 @@ jobs:
       - uses: actions/checkout@v2
       - uses: akhileshns/heroku-deploy@v3.12.12 # This is the action
         with:
-          heroku_api_key: ${{secrets.HEROKU_API_KEY}} HEROKU_EMAIL
+          heroku_api_key: ${{secrets.HEROKU_API_KEY}}
           heroku_app_name: "sliit-reasearch-management"
           heroku_email: ${{secrets.HEROKU_EMAIL}}
