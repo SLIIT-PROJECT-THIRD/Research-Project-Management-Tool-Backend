@@ -201,7 +201,7 @@ Date - 23/05/2022
 exports.getById = (req, res) => {
     const { id } = req.params
     console.log(id)
-    Student.findById({ _id })
+    Student.findById({ id })
         .exec((err, student) => {
             if (err)
                 console.log(err);
@@ -223,4 +223,20 @@ exports.update = (req, res) => {
         else
             res.json(student);
     })
-}
+};
+
+/*
+Name - Delete Student by ID
+Date - 23/05/2022
+ */
+exports.deleteById = (req, res) => {
+    const { id } = req.params
+    console.log(id)
+    Student.findByIdAndDelete({ id })
+        .exec((err, student) => {
+            if (err)
+                console.log(err);
+            else
+                res.json(student);
+        });
+};

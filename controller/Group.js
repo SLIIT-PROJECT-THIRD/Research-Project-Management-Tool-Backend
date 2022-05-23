@@ -144,3 +144,19 @@ exports.update = (req, res) => {
             res.json(group);
     })
 }
+
+/*
+Name - Delete Group by ID
+Date - 23/05/2022
+ */
+exports.deleteById = (req, res) => {
+    const { id } = req.params
+    console.log(id)
+    Group.findByIdAndDelete({ id })
+        .exec((err, group) => {
+            if (err)
+                console.log(err);
+            else
+                res.json(group);
+        });
+};
