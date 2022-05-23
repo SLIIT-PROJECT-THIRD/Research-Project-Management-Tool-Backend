@@ -16,7 +16,7 @@ Date - 22/04/2022
  */
 exports.create = (req, res) => {
 
-    const { firstName, middleName, lastName, sliitId, sliitEmail, personalEmail, contactNo, studentType } = req.body
+    const { firstName, middleName, lastName, sliitId, sliitEmail, personalEmail, contactNo, studentType, groupStatus } = req.body
 
     // Validate Email & Phone Number /^\d*(?:\.\d{1,2})?$/
     var validator = require("email-validator");
@@ -84,7 +84,7 @@ exports.create = (req, res) => {
         }
 
         //Check Server Errors
-        Student.create({ firstName, middleName, lastName, sliitId, sliitEmail, personalEmail, contactNo, studentType }, (err, student) => {
+        Student.create({ firstName, middleName, lastName, sliitId, sliitEmail, personalEmail, contactNo, studentType, groupStatus }, (err, student) => {
 
             //Check Server Errors
             if (err) {
@@ -176,3 +176,51 @@ Thank You`
         })
     }
 };
+
+/*
+Name - Display All Students
+Date - 23/05/2022
+*/
+
+exports.getAllStudents = (req, res) => {
+    Student.find({})
+        // .limit(10)
+        .sort({ createdAt: -1 })
+        .exec((err, student) => {
+            if (err)
+                console.log(err);
+            else
+                res.json(student);
+        });
+};
+
+/*
+Name - Display Student by ID
+Date - 23/05/2022
+ */
+exports.getById = (req, res) => {
+    const { id } = req.params
+    console.log(id)
+    Student.findById({ _id })
+        .exec((err, student) => {
+            if (err)
+                console.log(err);
+            else
+                res.json(student);
+        });
+};
+
+/*
+Name - Update Student Details
+Date - 23/05/2022
+ */
+exports.update = (req, res) => {
+    const { id } = req.params;
+    const { firstName, middleName, lastName, sliitId, sliitEmail, personalEmail, contactNo, studentType, groupStatus } = req.body;
+    Student.findOneAndUpdate({ id }, { firstName, middleName, lastName, sliitId, sliitEmail, personalEmail, contactNo, studentType, groupStatus }, { new: true }).exec((err, student) => {
+        if (err)
+            console.log(err);
+        else
+            res.json(student);
+    })
+}

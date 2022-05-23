@@ -39,6 +39,10 @@ const StudentSchema = new mongoose.Schema({
     studentType: {
         type: String,
         required: true //repeat, prorata, regular
+    },
+    groupStatus: {
+        type: Boolean,
+        required: true //Group have - YES | NO -->  TRUE | FALSE
     }
 }, { timestamps: true });
 

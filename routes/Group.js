@@ -13,8 +13,8 @@ const { create, getAllGroups, getById, update } = require('../controller/Group')
 router.post('/', create);
 
 router.get('/', getAllGroups);
-router.get('/:_id', getById);
+router.get('/:id', getById);
 
-router.patch('/:_id', update);
+router.patch('/:id', update);
 
 module.exports = router;

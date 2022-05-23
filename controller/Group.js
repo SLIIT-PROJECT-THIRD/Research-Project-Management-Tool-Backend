@@ -119,8 +119,8 @@ Name - Display Group by ID
 Date - 22/04/2022
  */
 exports.getById = (req, res) => {
-    const { _id } = req.params
-    console.log(_id)
+    const { id } = req.params
+    console.log(id)
     Group.findById({ _id })
         .exec((err, group) => {
             if (err)
@@ -135,9 +135,9 @@ Name - Update Group Details
 Date - 22/04/2022
  */
 exports.update = (req, res) => {
-    const { _id } = req.params;
+    const { id } = req.params;
     const { groupName, groupEmail, groupMembers } = req.body;
-    Group.findOneAndUpdate({ _id }, { groupName, groupEmail, groupMembers }, { new: true }).exec((err, group) => {
+    Group.findOneAndUpdate({ id }, { groupName, groupEmail, groupMembers }, { new: true }).exec((err, group) => {
         if (err)
             console.log(err);
         else
