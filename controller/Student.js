@@ -16,30 +16,13 @@ Date - 22/04/2022
  */
 exports.create = (req, res) => {
 
-    const { firstName, middleName, lastName, sliitId, sliitEmail, personalEmail, contactNo, studentType, groupStatus } = req.body
+    const { fullName, sliitId, sliitEmail, personalEmail, contactNo, studentType, groupStatus } = req.body
 
     // Validate Email & Phone Number /^\d*(?:\.\d{1,2})?$/
     var validator = require("email-validator");
 
     if ((validator.validate(sliitEmail) && (validator.validate(personalEmail)))) {
 
-        // Generate Random Usernames
-        const fname = [
-            ...names,
-            firstName
-        ];
-        const mname = [
-            middleName
-        ];
-        const lname = [
-            lastName
-        ];
-
-        const username = uniqueNamesGenerator({
-            dictionaries: [fname, mname, lname],
-            length: 3,
-            separator: '_'
-        });
 
         //Generate Random Passwords
         var generator = require('generate-password');
@@ -48,18 +31,14 @@ exports.create = (req, res) => {
             numbers: true
         });
 
-        console.log(`Username: ${username}`);
+        console.log(`Username: ${sliitEmail}`);
         console.log(`Password: ${password}`);
 
         //Check Empty Parameters
         switch (true) {
-            case !firstName:
+            case !fullName:
                 return res.status(400).json({
-                    error: 'First Name is required'
-                });
-            case !lastName:
-                return res.status(400).json({
-                    error: 'Last Name is required'
+                    error: 'Full Name is required'
                 });
             case !sliitId:
                 return res.status(400).json({
@@ -84,7 +63,7 @@ exports.create = (req, res) => {
         }
 
         //Check Server Errors
-        Student.create({ firstName, middleName, lastName, sliitId, sliitEmail, personalEmail, contactNo, studentType, groupStatus }, (err, student) => {
+        Student.create({ fullName, sliitId, sliitEmail, personalEmail, contactNo, studentType, groupStatus }, (err, student) => {
 
             //Check Server Errors
             if (err) {
@@ -143,7 +122,7 @@ You can login to the system using these username and password. This is a tempora
                             
 You have to give new username and password in your first login
                             
-Username: ${username}
+Username: ${sliitEmail}
 Password: ${password}
                             
 This is an auto generated email. If you have any issue with login to the system feel free to contact the support center 0761714844
@@ -216,8 +195,8 @@ Date - 23/05/2022
  */
 exports.update = (req, res) => {
     const { id } = req.params;
-    const { firstName, middleName, lastName, sliitId, sliitEmail, personalEmail, contactNo, studentType, groupStatus } = req.body;
-    Student.findOneAndUpdate({ id }, { firstName, middleName, lastName, sliitId, sliitEmail, personalEmail, contactNo, studentType, groupStatus }, { new: true }).exec((err, student) => {
+    const { fullName, sliitId, sliitEmail, personalEmail, contactNo, studentType, groupStatus } = req.body;
+    Student.findOneAndUpdate({ id }, { fullName, sliitId, sliitEmail, personalEmail, contactNo, studentType, groupStatus }, { new: true }).exec((err, student) => {
         if (err)
             console.log(err);
         else
