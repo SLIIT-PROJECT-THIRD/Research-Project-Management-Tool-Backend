@@ -11,4 +11,5 @@
 # Technologies
 <ul>
   <li>Node JS</li>
+  <li>MongoDB</li>
 </ul>
