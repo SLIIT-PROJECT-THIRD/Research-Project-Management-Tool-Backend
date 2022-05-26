@@ -5,9 +5,11 @@ const cors = require('cors');
 const mongoose = require('mongoose');
 require('dotenv').config();
 
+
 // import routes
 const groupRoute = require('./routes/Group');
 const studentRoute = require('./routes/Student');
+const SubmissionRoute = require('./routes/Admin_st');
 
 // App
 const app = express();
@@ -36,6 +38,7 @@ app.use(bodyParser.json());
 // Route Middleware
 app.use('/group', groupRoute);
 app.use('/student', studentRoute);
+app.use('/admin', SubmissionRoute);
 
 // Post
 const port = process.env.PORT || 8000;
