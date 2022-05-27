@@ -1,4 +1,4 @@
-const mongoose = require("mongoose");
+const mongoose = require('mongoose');
 
 const profileSchema = new mongoose.Schema(
   {
@@ -14,11 +14,6 @@ const profileSchema = new mongoose.Schema(
     },
 
     lName: {
-      type: String,
-      required: true,
-      trim: true,
-    },
-    uName: {
       type: String,
       required: true,
       trim: true,
@@ -48,7 +43,7 @@ const profileSchema = new mongoose.Schema(
 
     address: {
       type: String,
-      default: "null",
+      default: 'null',
     },
 
     tel: {
@@ -59,7 +54,7 @@ const profileSchema = new mongoose.Schema(
 
     type: {
       type: String,
-      default: "admin",
+      default: 'admin',
     },
     password: {
       type: String,
@@ -85,4 +80,4 @@ profileSchema.pre('save', async function(next) {
     this.password = await bcrypt.hash(this.password, salt)
 })*/
 
-module.exports = mongoose.model("Profiles", profileSchema);
+module.exports = mongoose.model('Profiles', profileSchema);
