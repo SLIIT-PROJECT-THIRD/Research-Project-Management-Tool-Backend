@@ -6,22 +6,29 @@ let mongoose = require('mongoose'),
 
 const req = require('express/lib/request');
 const res = require('express/lib/response');
+const upload = require('../middleware/upload');
     //admin model
-let AdminSchema = require('../models/Admin_st');
+const AdminSchema = require('../models/Admin_st');
     //CREATE Submission type
 router.route('/create-submission').post((req, res, next) => {
-    AdminSchema.create(req.body, (error, data) => {
-        if (error) {
-            return next(error)
-          } else {
+  AdminSchema.create(req.body,(error, data) => {
+    if(req.file){
+      AdminSchema.avatar = req.file.path
+    }
+   else if (error) {
+      return next(error)
+    }  else {
             console.log(data)
             res.json(data)
+            message: 'file added successfully'
           }
     })
+
 });
 //READ Submission type
 router.route('/').get((req, res) => {
     AdminSchema.find((error, data) => {
+      
         if (error) {
             return next(error)
           } else {
@@ -40,7 +47,7 @@ router.route('/edit-submission/:id').get((req, res) => {
     })
 })
 //Update submission type
-router.route('update-submission/:id').put((req, res, next) => {
+router.route('/update-submission/:id').put((req, res, next) => {
     AdminSchema.findByIdAndUpdate(req.params.id, {
         $set: req.body
   }, (error, data) => {
@@ -54,7 +61,7 @@ router.route('update-submission/:id').put((req, res, next) => {
     })
 }) 
 //DELETE submission type
-router.route('delete-submission/:id').delete((req, res, next ) =>{
+router.route('/delete-submission/:id').delete((req, res, next ) =>{
     AdminSchema.findByIdAndRemove(req.params.id, (error, data) => {
         if (error) {
             return next(error);

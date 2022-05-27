@@ -20,8 +20,7 @@ const AdminSchema = new mongoose.Schema({
         type:String,
         required: false
     },
-    file:{
-        data: Buffer,
+    avatar:{
         type: String
     }
 
