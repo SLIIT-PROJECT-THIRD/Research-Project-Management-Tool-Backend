@@ -10,6 +10,7 @@ const groupRoute = require('./routes/Group');
 const studentRoute = require('./routes/Student');
 const SubmissionRoute = require('./routes/Admin_st');
 const adminRoute = require('./routes/uprofile');
+const staffRoute = require('./routes/staff');
 
 // App
 const app = express();
@@ -38,6 +39,7 @@ app.use('/group', groupRoute);
 app.use('/student', studentRoute);
 app.use('/admin', SubmissionRoute);
 app.use('/admin', adminRoute);
+app.use('/staff', staffRoute);
 
 // Post
 const port = process.env.PORT || 8000;
