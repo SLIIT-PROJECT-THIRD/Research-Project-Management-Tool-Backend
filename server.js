@@ -28,12 +28,10 @@ app.use(cors());
 app.use(morgan('dev'));
 app.use(bodyParser.json());
 
-//Route
-// app.get('*', (req, res) => {
-//     res.json({
-//         data: 'You reached nodejs api for react node crud app now'
-//     });
-// });
+//Default Route
+app.get('*', (req, res) => {
+    res.send("<br><br><center><h1>Research management Tool - SLIIT- 2022</h1><h3>LIVE<h3></center>");
+});
 
 // Route Middleware
 app.use('/group', groupRoute);
