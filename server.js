@@ -17,12 +17,12 @@ const app = express();
 
 // Database
 mongoose
-  .connect(process.env.DATABASE, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-  })
-  .then(() => console.log('DB Connected'))
-  .catch((err) => console.log(err));
+    .connect(process.env.DATABASE, {
+        useNewUrlParser: true,
+        useUnifiedTopology: true,
+    })
+    .then(() => console.log('DB Connected'))
+    .catch((err) => console.log(err));
 
 // Middlewares
 app.use(cors());
@@ -30,7 +30,7 @@ app.use(morgan('dev'));
 app.use(bodyParser.json());
 
 //Default Route
-app.get('*', (req, res) => {
+app.get('/', (req, res) => {
     res.send("<br><br><center><h1>Research management Tool - SLIIT- 2022</h1><h3>LIVE<h3></center>");
 });
 
