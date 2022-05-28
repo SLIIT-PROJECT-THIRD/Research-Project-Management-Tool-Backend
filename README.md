@@ -19,3 +19,12 @@
   <li>Node JS</li>
   <li>MongoDB</li>
 </ul>
+
+# Deployement
+<ul>
+  <li>Docker</li>
+  <li>GitHub Action</li>
+  <li>Heroku</li>
+  <li>Azure Container Registry</li>
+  <li>Azure Web App</li>
+</ul>
