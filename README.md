@@ -8,10 +8,10 @@
 
 # Contributors
 <ol>
-  <li>H.M.I.P.Herath - IT20125516</li>
-  <li>XXXXXXXXXXXXXX - XXXXXXXXXX</li>
-  <li>XXXXXXXXXXXXXX - XXXXXXXXXX</li>
-  <li>XXXXXXXXXXXXXX - XXXXXXXXXX</li>
+  <li> Member 1 - IT20261900 - Ms. Vishara Prabuddhi (VisharaPrabuddhi) </li>
+  <li> Member 2 - IT20125516 - Mr. Isuru Pathum Herath (isurupathumherath) </li>
+  <li> Member 3 - IT20217068 - Mr. Hirusha Rukmal Hewageeganage (HirushaRukmal) </li>
+  <li> Member 4 - IT20074968 - Mr. R.D.S.H.Jayawardena (Samuditha97) </li>
 </ol>
 
 # Technologies
