@@ -10,6 +10,7 @@ const groupRoute = require('./routes/Group');
 const studentRoute = require('./routes/Student');
 const SubmissionRoute = require('./routes/Admin_st');
 const adminRoute = require('./routes/uprofile');
+const staffRoute = require('./routes/staff');
 const uploads = require('./middleware/upload');
 const fileUpload = require('./routes/fileUpload')
 
@@ -18,30 +19,29 @@ const app = express();
 
 // Database
 mongoose
-  .connect(process.env.DATABASE, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-  })
-  .then(() => console.log('DB Connected'))
-  .catch((err) => console.log(err));
+    .connect(process.env.DATABASE, {
+        useNewUrlParser: true,
+        useUnifiedTopology: true,
+    })
+    .then(() => console.log('DB Connected'))
+    .catch((err) => console.log(err));
 
 // Middlewares
 app.use(cors());
 app.use(morgan('dev'));
 app.use(bodyParser.json());
 
-//Route
-// app.get('*', (req, res) => {
-//     res.json({
-//         data: 'You reached nodejs api for react node crud app now'
-//     });
-// });
+//Default Route
+app.get('/', (req, res) => {
+    res.send("<br><br><center><h1>Research management Tool - SLIIT- 2022</h1><h3>LIVE<h3></center>");
+});
 
 // Route Middleware
 app.use('/group', groupRoute);
 app.use('/student', studentRoute);
 app.use('/admin', SubmissionRoute);
 app.use('/admin', adminRoute);
+app.use('/staff', staffRoute);
 app.use('/uploads', express.static('uploads'))
 app.use('/admin',fileUpload);
 

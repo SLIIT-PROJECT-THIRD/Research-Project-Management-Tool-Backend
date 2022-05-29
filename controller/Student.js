@@ -180,7 +180,7 @@ Date - 23/05/2022
 exports.getById = (req, res) => {
     const { id } = req.params
     console.log(id)
-    Student.findById({ id })
+    Student.findById({ _id: id })
         .exec((err, student) => {
             if (err)
                 console.log(err);
