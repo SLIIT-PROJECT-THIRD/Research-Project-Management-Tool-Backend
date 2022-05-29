@@ -11,6 +11,8 @@ const studentRoute = require('./routes/Student');
 const SubmissionRoute = require('./routes/Admin_st');
 const adminRoute = require('./routes/uprofile');
 const staffRoute = require('./routes/staff');
+const uploads = require('./middleware/upload');
+const fileUpload = require('./routes/fileUpload')
 
 // App
 const app = express();
@@ -40,6 +42,8 @@ app.use('/student', studentRoute);
 app.use('/admin', SubmissionRoute);
 app.use('/admin', adminRoute);
 app.use('/staff', staffRoute);
+app.use('/uploads', express.static('uploads'))
+app.use('/admin',fileUpload);
 
 // Post
 const port = process.env.PORT || 8000;
