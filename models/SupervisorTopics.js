@@ -49,7 +49,7 @@ const SupervisorTopicsSchema = new mongoose.Schema({
     studentEmail: {
         type: String,
         required: true
-    }, // send accept / reject message
+    }, // send topic accept / reject message
     messageId: {
         type: String,
         required: true
