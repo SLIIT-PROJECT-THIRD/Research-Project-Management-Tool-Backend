@@ -14,19 +14,23 @@ const StudentSchema = new mongoose.Schema({
     },
     sliitId: {
         type: String,
-        required: true
+        required: true,
+        unique: true
     },
     sliitEmail: {
         type: String,
-        required: true
+        required: true,
+        unique: true
     },
     personalEmail: {
         type: String,
-        required: true
+        required: true,
+        unique: true
     },
     contactNo: {
         type: String,
-        required: true
+        required: true,
+        unique: true
     },
     studentType: {
         type: String,
