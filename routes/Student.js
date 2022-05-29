@@ -7,10 +7,11 @@ const express = require('express');
 const router = express.Router();
 
 // Import Controller Methods
-const { create, getAllStudents, getById, update, deleteById } = require('../controller/Student');
+const { create, getAllStudents, getById, update, deleteById, getByUsernameAndPassword } = require('../controller/Student');
 
 //Controller Routes
 router.post('/', create);
+router.post('/login', getByUsernameAndPassword);
 router.get('/', getAllStudents);
 router.get('/:id', getById);
 router.patch('/:id', update);
