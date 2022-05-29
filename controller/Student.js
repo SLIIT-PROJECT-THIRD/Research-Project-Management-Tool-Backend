@@ -63,7 +63,7 @@ exports.create = (req, res) => {
         }
 
         //Check Server Errors
-        Student.create({ fullName, sliitId, sliitEmail, personalEmail, contactNo, studentType, groupStatus }, (err, student) => {
+        Student.create({ fullName, sliitId, sliitEmail, personalEmail, contactNo, studentType, groupStatus, password }, (err, student) => {
 
             //Check Server Errors
             if (err) {
@@ -186,6 +186,29 @@ exports.getById = (req, res) => {
                 console.log(err);
             else
                 res.json(student);
+        });
+};
+
+/*
+Name - Get Student by Username and Password
+Date - 23/05/2022
+ */
+exports.getByUsernameAndPassword = (req, res) => {
+    const { sliitEmail, password } = req.body
+    console.log(req.body)
+    Student.findOne({ sliitEmail: sliitEmail, password: password })
+        .exec((err, student) => {
+            if (err) {
+                console.log(err);
+                res.status(400).json({
+                    error: 'Unautherized'
+                });
+            }
+            else {
+                res.json(student);
+                console.log(student);
+            }
+
         });
 };
 
