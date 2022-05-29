@@ -7,25 +7,19 @@ desc - admin model
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
-const AdminSchema = new mongoose.Schema({
+let AdminSchema = new Schema({
     Submission_Topic:{
-        type: String,
-        required: true
+        type: String
     },
     Deadline:{
-        type:Date,
-        required: true
+        type: Date
     },
     Description:{
-        type:String,
-        required: false
-    },
-    avatar:{
         type: String
-    }
+    },
 
-},{timestamps: true},
-{collection: 'admin'
-});
+},{timestamps: true} ,{
+    collection:  'admin_sts'
+} )
 
 module.exports = mongoose.model('Admin_st', AdminSchema);
