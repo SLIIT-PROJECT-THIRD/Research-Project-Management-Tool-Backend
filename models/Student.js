@@ -35,6 +35,10 @@ const StudentSchema = new mongoose.Schema({
     groupStatus: {
         type: Boolean,
         required: true //Group have - YES | NO -->  TRUE | FALSE
+    },
+    password: {
+        type: String,
+        required: true
     }
 }, { timestamps: true });
 
