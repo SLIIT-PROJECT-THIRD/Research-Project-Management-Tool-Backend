@@ -15,3 +15,4 @@ exports.getAllGroups = (req, res) => {
                 res.json(group);
         });
 };
+
