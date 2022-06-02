@@ -6,7 +6,6 @@
 
 const Student = require('../models/Student');
 const nodemailer = require("nodemailer");
-const { uniqueNamesGenerator, names } = require('unique-names-generator');
 const Group = require('../models/Group');
 require('dotenv').config();
 
@@ -186,6 +185,24 @@ exports.getById = (req, res) => {
                 console.log(err);
             else
                 res.json(student);
+        });
+};
+
+/*
+Name - Display Student by ID
+Date - 02/06/2022
+ */
+exports.getByIdInternalCall = (id) => {
+    console.log(id)
+    Student.findById({ _id: id })
+        .exec((err, student) => {
+            if (err)
+                return err;
+            else {
+                console.log(student)
+                return student;
+            }
+                
         });
 };
 

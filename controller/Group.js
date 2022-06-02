@@ -6,6 +6,7 @@
 
 const Group = require('../models/Group');
 const nodemailer = require("nodemailer");
+const StudentController = require('../controller/Student');
 require('dotenv').config();
 
 /*
@@ -15,23 +16,35 @@ Date - 22/04/2022
 
 exports.create = (req, res) => {
 
-    const { groupId, groupName, groupEmail, groupMembers } = req.body
+    const { groupName, groupLeader, firstMember, secondMember, thirdMember, groupTopic } = req.body
 
-    console.log(groupMembers.length);
 
-    if (groupMembers.length <= 4 && groupMembers.length > 0) {
-        Group.create({ groupId, groupName, groupEmail, groupMembers }, (err, group) => {
+
+    if (groupName != null && groupLeader != null && firstMember != null && secondMember != null && thirdMember != null && groupTopic != null) {
+        Group.create({ groupName, groupLeader, firstMember, secondMember, thirdMember, groupTopic }, (err, group) => {
 
             if (err) {
                 console.log(err);
 
-                if (err.keyPattern.groupId == 1) {
-                    res.status(400).json({
-                        error: 'Group ID cannot be duplicated!'
-                    });
-                } else if (err.keyPattern.groupName == 1) {
+                if (err.keyPattern.groupName == 1) {
                     res.status(400).json({
                         error: 'Group Name cannot be duplicated!'
+                    });
+                } else if (err.keyPattern.groupLeader == 1) {
+                    res.status(400).json({
+                        error: 'Group Leader cannot be duplicated!'
+                    });
+                } else if (err.keyPattern.firstMember == 1) {
+                    res.status(400).json({
+                        error: 'First Member cannot be duplicated!'
+                    });
+                } else if (err.keyPattern.secondMember == 1) {
+                    res.status(400).json({
+                        error: 'Second Member cannot be duplicated!'
+                    });
+                } else if (err.keyPattern.thirdMember == 1) {
+                    res.status(400).json({
+                        error: 'Third Member cannot be duplicated!'
                     });
                 }
                 else {
@@ -42,6 +55,9 @@ exports.create = (req, res) => {
             }
             else {
                 res.json(group);
+
+                console.log(groupLeader);
+                console.log(StudentController.getByIdInternalCall(groupLeader));
 
                 async function main() {
                     let testAccount = await nodemailer.createTestAccount();
@@ -55,14 +71,14 @@ exports.create = (req, res) => {
 
                     var mailOptions = {
                         from: 'researchprojectsliit@gmail.com',
-                        to: `${groupEmail}`,
+                        to: `isurupathumherath@gmail.com, isurupethum2000@gmail.com`,
                         subject: 'Research Project Group Registeation - SLIIT',
                         text:
                             `Hi, 
 
 Your group registration request is submitted successfully.
                             
-Group ID: ${groupId}
+Group ID: ${groupTopic}
 Group Name: ${groupName}
                             
 This is an auto generated email. If you have any issue with login to the system feel free to contact the support center 0761714844
@@ -85,14 +101,9 @@ Thank You`
 
         });
     }
-    else if (groupMembers.length > 4) {
+    else {
         res.status(400).json({
-            error: 'Please select only maximum 4 members!'
-        })
-    }
-    else if (groupMembers.length <= 0) {
-        res.status(400).json({
-            error: 'Please select at least 1 group members!'
+            error: 'Please add required fields!'
         })
     }
 }

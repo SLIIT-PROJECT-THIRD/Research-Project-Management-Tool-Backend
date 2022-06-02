@@ -9,23 +9,35 @@ const mongoose = require('mongoose');
 const { ObjectId } = mongoose.Schema;
 
 const GroupSchema = new mongoose.Schema({
-    groupId: {
-        type: String,
-        required: true,
-        unique: true
-    },
     groupName: {
         type: String,
         required: true,
         unique: true
     },
-    groupEmail: {
+    groupLeader: {
+        type: String,
+        required: true,
+        unique: true
+    },
+    firstMember: {
+        type: String,
+        required: true,
+        unique: true
+    },
+    secondMember: {
+        type: String,
+        required: true,
+        unique: true
+    },
+    thirdMember: {
+        type: String,
+        required: true,
+        unique: true
+    },
+    groupTopic: {
         type: String,
         required: true
     },
-    groupMembers: {
-        type: Array
-    }
 }, { timestamps: true });
 
 module.exports = mongoose.model('Group', GroupSchema);
