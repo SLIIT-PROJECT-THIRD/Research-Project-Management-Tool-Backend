@@ -147,8 +147,8 @@ Date - 22/04/2022
  */
 exports.update = (req, res) => {
     const { id } = req.params;
-    const { groupName, groupEmail, groupMembers } = req.body;
-    Group.findOneAndUpdate({ id }, { groupName, groupEmail, groupMembers }, { new: true }).exec((err, group) => {
+    const { groupName, groupLeader, firstMember, secondMember, thirdMember, groupTopic } = req.body;
+    Group.findOneAndUpdate({ id }, { groupName, groupLeader, firstMember, secondMember, thirdMember, groupTopic }, { new: true }).exec((err, group) => {
         if (err)
             console.log(err);
         else
