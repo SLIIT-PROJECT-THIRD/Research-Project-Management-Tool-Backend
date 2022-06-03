@@ -17,11 +17,11 @@ Date - 22/04/2022
 exports.create = (req, res) => {
 
     const { groupName, groupLeader, firstMember, secondMember, thirdMember, groupTopic, groupEmail } = req.body
+    const groupStatus = false;
 
 
-
-    if (groupName != null && groupLeader != null && firstMember != null && secondMember != null && thirdMember != null && groupTopic != null && groupEmail != null) {
-        Group.create({ groupName, groupLeader, firstMember, secondMember, thirdMember, groupTopic, groupEmail }, (err, group) => {
+    if (groupName != null && groupLeader != null && firstMember != null && secondMember != null && thirdMember != null && groupTopic != null && groupEmail != null && groupStatus != null) {
+        Group.create({ groupName, groupLeader, firstMember, secondMember, thirdMember, groupTopic, groupEmail, groupStatus }, (err, group) => {
 
             if (err) {
                 console.log(err);
@@ -167,8 +167,8 @@ Date - 22/04/2022
  */
 exports.update = (req, res) => {
     const { id } = req.params;
-    const { groupName, groupLeader, firstMember, secondMember, thirdMember, groupTopic } = req.body;
-    Group.findOneAndUpdate({ id }, { groupName, groupLeader, firstMember, secondMember, thirdMember, groupTopic }, { new: true }).exec((err, group) => {
+    const { groupName, groupLeader, firstMember, secondMember, thirdMember, groupTopic, groupStatus } = req.body;
+    Group.findOneAndUpdate({ _id: id }, { groupName, groupLeader, firstMember, secondMember, thirdMember, groupTopic, groupStatus }, { new: true }).exec((err, group) => {
         if (err)
             console.log(err);
         else
