@@ -236,7 +236,7 @@ Date - 23/05/2022
 exports.update = (req, res) => {
     const { id } = req.params;
     const { fullName, sliitId, sliitEmail, personalEmail, contactNo, studentType, groupStatus } = req.body;
-    Student.findOneAndUpdate({ id }, { fullName, sliitId, sliitEmail, personalEmail, contactNo, studentType, groupStatus }, { new: true }).exec((err, student) => {
+    Student.findOneAndUpdate({ _id: id }, { fullName, sliitId, sliitEmail, personalEmail, contactNo, studentType, groupStatus }, { new: true }).exec((err, student) => {
         if (err)
             console.log(err);
         else

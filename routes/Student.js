@@ -14,7 +14,7 @@ router.post('/', create);
 router.post('/login', getByUsernameAndPassword);
 router.get('/', getAllStudents);
 router.get('/:id', getById);
-router.patch('/:id', update);
+router.put('/:id', update);
 router.delete('/:id', deleteById);
 
 module.exports = router;
