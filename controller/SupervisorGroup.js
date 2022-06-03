@@ -46,81 +46,130 @@ exports.create = (req, res) => {
 }
 
 /*
-Name - Display All Groups
-Date - 22/04/2022
+Name - Display All Supervisor and Co-Supervisors
+Date - 03/06/2022
 */
 
-exports.getAllGroups = (req, res) => {
-    Group.find({})
+exports.getAllSupervisorsAndCoSupervisors = (req, res) => {
+    SupervisorGroup.find({})
         // .limit(10)
         .sort({ createdAt: -1 })
-        .exec((err, group) => {
+        .exec((err, supervisor) => {
             if (err)
                 console.log(err);
             else
-                res.json(group);
+                res.json(supervisor);
         });
 };
 
 /*
-Name - Display Group by ID
-Date - 22/04/2022
+Name - Display Supervisor Request by ID
+Date - 03/06/2022
  */
 exports.getById = (req, res) => {
     const { id } = req.params
     console.log(id)
-    Group.findById({ _id })
-        .exec((err, group) => {
+    SupervisorGroup.findById({ _id })
+        .exec((err, supervisor) => {
             if (err)
                 console.log(err);
             else
-                res.json(group);
+                res.json(supervisor);
         });
 };
 
 /*
-Name - Display by Student Id
-Date - 22/04/2022
+Name - Display by Group Id
+Date - 03/06/2022
  */
-exports.getByStudentId = (req, res) => {
+exports.getByGroupId = (req, res) => {
     const { id } = req.params
     console.log(id)
-    Group.findOne({ groupLeader: id })
-        .exec((err, group) => {
+    SupervisorGroup.findOne({ groupId: id })
+        .exec((err, groupSupervisor) => {
             if (err)
                 console.log(err);
             else
-                res.json(group);
+                res.json(groupSupervisor);
         });
 };
 
 /*
-Name - Update Group Details
-Date - 22/04/2022
+Name - Display by Supervisor id
+Date - 03/06/2022
+ */
+exports.getBySupervisorId = (req, res) => {
+    const { id } = req.params
+    console.log(id)
+    SupervisorGroup.findOne({ supervisorId: id })
+        .exec((err, groupSupervisor) => {
+            if (err)
+                console.log(err);
+            else
+                res.json(groupSupervisor);
+        });
+};
+
+/*
+Name - Display by Co-Supervisor Id
+Date - 03/06/2022
+ */
+exports.getByCoSupervisorId = (req, res) => {
+    const { id } = req.params
+    console.log(id)
+    SupervisorGroup.findOne({ coSupervisorId: id })
+        .exec((err, groupSupervisor) => {
+            if (err)
+                console.log(err);
+            else
+                res.json(groupSupervisor);
+        });
+};
+
+/*
+Name - Display by Status
+Date - 03/06/2022
+ */
+exports.getByStatus = (req, res) => {
+    const { id } = req.params
+    console.log(id)
+    SupervisorGroup.findOne({ status: id })
+        .exec((err, groupSupervisor) => {
+            if (err)
+                console.log(err);
+            else
+                res.json(groupSupervisor);
+        });
+};
+
+
+/*
+Name - Update Supervisor Group Details
+Date - 03/06/2022
  */
 exports.update = (req, res) => {
     const { id } = req.params;
-    const { groupName, groupLeader, firstMember, secondMember, thirdMember, groupTopic } = req.body;
-    Group.findOneAndUpdate({ id }, { groupName, groupLeader, firstMember, secondMember, thirdMember, groupTopic }, { new: true }).exec((err, group) => {
+    const { groupId, supervisorId, coSupervisorId, status } = req.body;
+    SupervisorGroup.findOneAndUpdate({ id }, { groupId, supervisorId, coSupervisorId, status }, { new: true }).exec((err, supervisorGroup) => {
         if (err)
             console.log(err);
         else
-            res.json(group);
+            res.json(supervisorGroup);
     })
 }
 
 /*
-Name - Delete Group by ID
-Date - 23/05/2022
+Name - Delete Supervisor Group by ID
+Date - 03/06/2022
  */
 exports.deleteById = (req, res) => {
     const { id } = req.params
     console.log(id)
-    Group.findByIdAndDelete({ _id: id })
-        .exec((err, group) => {
+    SupervisorGroup.findByIdAndDelete({ _id: id })
+        .exec((err, supervisorGroup) => {
             if (err)
                 console.log(err);
             else
-                res.json(group);
+                res.json(supervisorGroup);
         });
 };
