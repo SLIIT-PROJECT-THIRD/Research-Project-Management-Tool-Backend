@@ -16,19 +16,23 @@ const GroupSchema = new mongoose.Schema({
     },
     groupLeader: {
         type: String,
-        required: true
+        required: true,
+        unique: true
     },
     firstMember: {
         type: String,
-        required: true
+        required: true,
+        unique: true
     },
     secondMember: {
         type: String,
-        required: true
+        required: true,
+        unique: true
     },
     thirdMember: {
         type: String,
-        required: true
+        required: true,
+        unique: true
     },
     groupTopic: {
         type: String,
