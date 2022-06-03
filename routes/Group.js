@@ -14,7 +14,7 @@ router.post('/', create);
 router.get('/', getAllGroups);
 router.get('/:id', getById);
 router.get('/groupData/:id', getByStudentId);
-router.patch('/:id', update);
+router.put('/:id', update);
 router.delete('/:id', deleteById);
 
 module.exports = router;
