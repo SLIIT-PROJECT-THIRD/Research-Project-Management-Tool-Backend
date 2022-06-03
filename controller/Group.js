@@ -142,6 +142,22 @@ exports.getById = (req, res) => {
 };
 
 /*
+Name - Display by Student Id
+Date - 22/04/2022
+ */
+exports.getByStudentId = (req, res) => {
+    const { id } = req.params
+    console.log(id)
+    Group.findOne({ groupLeader: id })
+        .exec((err, group) => {
+            if (err)
+                console.log(err);
+            else
+                res.json(group);
+        });
+};
+
+/*
 Name - Update Group Details
 Date - 22/04/2022
  */
@@ -163,7 +179,7 @@ Date - 23/05/2022
 exports.deleteById = (req, res) => {
     const { id } = req.params
     console.log(id)
-    Group.findByIdAndDelete({ id })
+    Group.findByIdAndDelete({ _id: id })
         .exec((err, group) => {
             if (err)
                 console.log(err);
