@@ -14,22 +14,12 @@ let PanelMemberSchema = new Schema({
     Panel_Member_Email:{
         type: String
     },
-    Groups:[
-        {
-        group1: String,
-        group2: String,
-        group3: String,
-        group4: String
-        }
-    ],
-    Group_emails:[
-        {
-         group1: String,
-        group2: String,
-        group3: String,
-        group4: String
-        }
-    ],
+    Group_Name:{
+        type: String
+    },
+    Group_email:{
+        type: String
+    },
 
 },{timestamps: true} ,{
     collection:  'allocatePanelMember'
