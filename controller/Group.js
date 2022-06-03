@@ -6,6 +6,7 @@
 
 const Group = require('../models/Group');
 const nodemailer = require("nodemailer");
+const StudentController = require('../controller/Student');
 require('dotenv').config();
 
 /*
@@ -15,23 +16,39 @@ Date - 22/04/2022
 
 exports.create = (req, res) => {
 
-    const { groupId, groupName, groupEmail, groupMembers } = req.body
+    const { groupName, groupLeader, firstMember, secondMember, thirdMember, groupTopic, groupEmail } = req.body
 
-    console.log(groupMembers.length);
 
-    if (groupMembers.length <= 4 && groupMembers.length > 0) {
-        Group.create({ groupId, groupName, groupEmail, groupMembers }, (err, group) => {
+
+    if (groupName != null && groupLeader != null && firstMember != null && secondMember != null && thirdMember != null && groupTopic != null && groupEmail != null) {
+        Group.create({ groupName, groupLeader, firstMember, secondMember, thirdMember, groupTopic, groupEmail }, (err, group) => {
 
             if (err) {
                 console.log(err);
 
-                if (err.keyPattern.groupId == 1) {
-                    res.status(400).json({
-                        error: 'Group ID cannot be duplicated!'
-                    });
-                } else if (err.keyPattern.groupName == 1) {
+                if (err.keyPattern.groupName == 1) {
                     res.status(400).json({
                         error: 'Group Name cannot be duplicated!'
+                    });
+                } else if (err.keyPattern.groupLeader == 1) {
+                    res.status(400).json({
+                        error: 'Group Leader cannot be duplicated!'
+                    });
+                } else if (err.keyPattern.firstMember == 1) {
+                    res.status(400).json({
+                        error: 'First Member cannot be duplicated!'
+                    });
+                } else if (err.keyPattern.secondMember == 1) {
+                    res.status(400).json({
+                        error: 'Second Member cannot be duplicated!'
+                    });
+                } else if (err.keyPattern.thirdMember == 1) {
+                    res.status(400).json({
+                        error: 'Third Member cannot be duplicated!'
+                    });
+                } else if (err.keyPattern.groupEmail == 1) {
+                    res.status(400).json({
+                        error: 'Group Email cannot be duplicated!'
                     });
                 }
                 else {
@@ -42,6 +59,9 @@ exports.create = (req, res) => {
             }
             else {
                 res.json(group);
+
+                console.log(groupLeader);
+                console.log(StudentController.getByIdInternalCall(groupLeader));
 
                 async function main() {
                     let testAccount = await nodemailer.createTestAccount();
@@ -62,7 +82,7 @@ exports.create = (req, res) => {
 
 Your group registration request is submitted successfully.
                             
-Group ID: ${groupId}
+Group ID: ${groupTopic}
 Group Name: ${groupName}
                             
 This is an auto generated email. If you have any issue with login to the system feel free to contact the support center 0761714844
@@ -85,14 +105,9 @@ Thank You`
 
         });
     }
-    else if (groupMembers.length > 4) {
+    else {
         res.status(400).json({
-            error: 'Please select only maximum 4 members!'
-        })
-    }
-    else if (groupMembers.length <= 0) {
-        res.status(400).json({
-            error: 'Please select at least 1 group members!'
+            error: 'Please add required fields!'
         })
     }
 }
@@ -131,13 +146,29 @@ exports.getById = (req, res) => {
 };
 
 /*
+Name - Display by Student Id
+Date - 22/04/2022
+ */
+exports.getByStudentId = (req, res) => {
+    const { id } = req.params
+    console.log(id)
+    Group.findOne({ groupLeader: id })
+        .exec((err, group) => {
+            if (err)
+                console.log(err);
+            else
+                res.json(group);
+        });
+};
+
+/*
 Name - Update Group Details
 Date - 22/04/2022
  */
 exports.update = (req, res) => {
     const { id } = req.params;
-    const { groupName, groupEmail, groupMembers } = req.body;
-    Group.findOneAndUpdate({ id }, { groupName, groupEmail, groupMembers }, { new: true }).exec((err, group) => {
+    const { groupName, groupLeader, firstMember, secondMember, thirdMember, groupTopic } = req.body;
+    Group.findOneAndUpdate({ id }, { groupName, groupLeader, firstMember, secondMember, thirdMember, groupTopic }, { new: true }).exec((err, group) => {
         if (err)
             console.log(err);
         else
@@ -152,7 +183,7 @@ Date - 23/05/2022
 exports.deleteById = (req, res) => {
     const { id } = req.params
     console.log(id)
-    Group.findByIdAndDelete({ id })
+    Group.findByIdAndDelete({ _id: id })
         .exec((err, group) => {
             if (err)
                 console.log(err);

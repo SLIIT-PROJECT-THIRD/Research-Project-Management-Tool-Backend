@@ -8,6 +8,7 @@ require('dotenv').config();
 // import routes
 const groupRoute = require('./routes/Group');
 const studentRoute = require('./routes/Student');
+const supervisorGroup = require('./routes/SupervisorGroup');
 const SubmissionRoute = require('./routes/Admin_st');
 const adminRoute = require('./routes/uprofile');
 const staffRoute = require('./routes/staff');
@@ -40,12 +41,13 @@ app.get('/', (req, res) => {
 // Route Middleware
 app.use('/group', groupRoute);
 app.use('/student', studentRoute);
+app.use('/supervisor-group', supervisorGroup);
 app.use('/admin', SubmissionRoute);
 app.use('/admin', adminRoute);
 app.use('/staff', staffRoute);
-app.use('/uploads', express.static('uploads'))
-app.use('/admin',fileUpload);
+app.use('/uploads', express.static('uploads'));
 app.use('/supervisorTopics', supervisorTopicsRouter);
+app.use('/admin', fileUpload);
 
 // Post
 const port = process.env.PORT || 8000;

@@ -89,6 +89,32 @@ router.get('/profile/:id', (req, res) => {
   });
 });
 
+//Find by Supervisor
+router.get('/profiles/supervisor', (req, res) => {
+  Profile.find({ type: "Supervisor" }, (err, profile) => {
+    if (err) {
+      return res.status(400).json({ success: false, err });
+    }
+    return res.status(200).json({
+      success: true,
+      profile,
+    });
+  });
+});
+
+//Find by Co-Supervisor
+router.get('/profiles/co-supervisor', (req, res) => {
+  Profile.find({ type: "Co-Supervisor" }, (err, profile) => {
+    if (err) {
+      return res.status(400).json({ success: false, err });
+    }
+    return res.status(200).json({
+      success: true,
+      profile,
+    });
+  });
+});
+
 //login
 router.post('/login', async (req, res) => {
   const { email, password } = req.body;
