@@ -16,12 +16,12 @@ Date - 22/04/2022
 
 exports.create = (req, res) => {
 
-    const { groupName, groupLeader, firstMember, secondMember, thirdMember, groupTopic } = req.body
+    const { groupName, groupLeader, firstMember, secondMember, thirdMember, groupTopic, groupEmail } = req.body
 
 
 
-    if (groupName != null && groupLeader != null && firstMember != null && secondMember != null && thirdMember != null && groupTopic != null) {
-        Group.create({ groupName, groupLeader, firstMember, secondMember, thirdMember, groupTopic }, (err, group) => {
+    if (groupName != null && groupLeader != null && firstMember != null && secondMember != null && thirdMember != null && groupTopic != null && groupEmail != null) {
+        Group.create({ groupName, groupLeader, firstMember, secondMember, thirdMember, groupTopic, groupEmail }, (err, group) => {
 
             if (err) {
                 console.log(err);
@@ -45,6 +45,10 @@ exports.create = (req, res) => {
                 } else if (err.keyPattern.thirdMember == 1) {
                     res.status(400).json({
                         error: 'Third Member cannot be duplicated!'
+                    });
+                } else if (err.keyPattern.groupEmail == 1) {
+                    res.status(400).json({
+                        error: 'Group Email cannot be duplicated!'
                     });
                 }
                 else {
@@ -71,7 +75,7 @@ exports.create = (req, res) => {
 
                     var mailOptions = {
                         from: 'researchprojectsliit@gmail.com',
-                        to: `isurupathumherath@gmail.com, isurupethum2000@gmail.com`,
+                        to: `${groupEmail}`,
                         subject: 'Research Project Group Registeation - SLIIT',
                         text:
                             `Hi, 
