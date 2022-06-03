@@ -15,6 +15,7 @@ const staffRoute = require('./routes/staff');
 const uploads = require('./middleware/upload');
 const fileUpload = require('./routes/fileUpload');
 const supervisorTopicsRouter = require('./routes/SupervisorTopics');
+const test = require('./routes/test');
 
 // App
 const app = express();
@@ -48,6 +49,7 @@ app.use('/staff', staffRoute);
 app.use('/uploads', express.static('uploads'));
 app.use('/supervisorTopics', supervisorTopicsRouter);
 app.use('/admin', fileUpload);
+app.use( test);
 
 // Post
 const port = process.env.PORT || 8000;
