@@ -110,7 +110,7 @@ exports.create = (req, res) => {
 
                     var mailOptions = {
                         from: 'researchprojectsliit@gmail.com',
-                        to: `${sliitEmail}`,
+                        to: `${sliitEmail}, ${personalEmail}`,
                         subject: 'Student Registration - Login Details',
                         text:
                             `Hi,
@@ -202,7 +202,7 @@ exports.getByIdInternalCall = (id) => {
                 console.log(student)
                 return student;
             }
-                
+
         });
 };
 
