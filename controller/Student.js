@@ -251,7 +251,7 @@ Date - 23/05/2022
 exports.deleteById = (req, res) => {
     const { id } = req.params
     console.log(id)
-    Student.findByIdAndDelete({ id })
+    Student.findByIdAndDelete({ _id: id })
         .exec((err, student) => {
             if (err)
                 console.log(err);
