@@ -16,3 +16,14 @@ exports.getAllGroups = (req, res) => {
         });
 };
 
+exports.getById = (req, res) => {
+    const { id } = req.params
+    console.log(id)
+    Group.findById({ _id })
+        .exec((err, group) => {
+            if (err)
+                console.log(err);
+            else
+                res.json(group);
+        });
+};
