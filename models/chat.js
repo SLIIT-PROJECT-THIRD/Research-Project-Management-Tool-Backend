@@ -1,0 +1,45 @@
+const mongoose = require("mongoose");
+
+const ChatSchema = new mongoose.Schema(
+{
+  refID: {
+    type: String,
+    required: true,
+  },
+
+  fullName: {
+    type: String,
+    required: true,
+  },
+  nic: {
+    type: String,
+    required: true,
+  },
+  email: {
+    type: String,
+    required: true,
+  },
+  departmentName: {
+    type: String,
+    required: true,
+  },
+  message: {
+    type: String,
+    required: true,
+  },
+  reply: {
+    type: String,
+    required: true,
+  },
+  status: {
+    type: String,
+    required: true,
+    default: "New",
+  },
+  userID: {
+    type: String,
+    required: true,
+  },
+});
+
+module.exports = mongoose.model("chats", ChatSchema);
