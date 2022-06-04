@@ -7,13 +7,14 @@ const express = require('express');
 const router = express.Router();
 
 // Import Controller Methods
-const { create, getAllGroups, getById, update, deleteById } = require('../controller/Group');
+const { create, getAllGroups, getById, update, deleteById, getByStudentId } = require('../controller/Group');
 
 //Controller Routes
 router.post('/', create);
 router.get('/', getAllGroups);
 router.get('/:id', getById);
-router.patch('/:id', update);
+router.get('/groupData/:id', getByStudentId);
+router.put('/:id', update);
 router.delete('/:id', deleteById);
 
 module.exports = router;

@@ -6,7 +6,6 @@
 
 const Student = require('../models/Student');
 const nodemailer = require("nodemailer");
-const { uniqueNamesGenerator, names } = require('unique-names-generator');
 const Group = require('../models/Group');
 require('dotenv').config();
 
@@ -111,7 +110,7 @@ exports.create = (req, res) => {
 
                     var mailOptions = {
                         from: 'researchprojectsliit@gmail.com',
-                        to: `${sliitEmail}`,
+                        to: `${sliitEmail}, ${personalEmail}`,
                         subject: 'Student Registration - Login Details',
                         text:
                             `Hi,
@@ -190,6 +189,24 @@ exports.getById = (req, res) => {
 };
 
 /*
+Name - Display Student by ID
+Date - 02/06/2022
+ */
+exports.getByIdInternalCall = (id) => {
+    console.log(id)
+    Student.findById({ _id: id })
+        .exec((err, student) => {
+            if (err)
+                return err;
+            else {
+                console.log(student)
+                return student;
+            }
+
+        });
+};
+
+/*
 Name - Get Student by Username and Password
 Date - 23/05/2022
  */
@@ -219,7 +236,7 @@ Date - 23/05/2022
 exports.update = (req, res) => {
     const { id } = req.params;
     const { fullName, sliitId, sliitEmail, personalEmail, contactNo, studentType, groupStatus } = req.body;
-    Student.findOneAndUpdate({ id }, { fullName, sliitId, sliitEmail, personalEmail, contactNo, studentType, groupStatus }, { new: true }).exec((err, student) => {
+    Student.findOneAndUpdate({ _id: id }, { fullName, sliitId, sliitEmail, personalEmail, contactNo, studentType, groupStatus }, { new: true }).exec((err, student) => {
         if (err)
             console.log(err);
         else
@@ -234,7 +251,7 @@ Date - 23/05/2022
 exports.deleteById = (req, res) => {
     const { id } = req.params
     console.log(id)
-    Student.findByIdAndDelete({ id })
+    Student.findByIdAndDelete({ _id: id })
         .exec((err, student) => {
             if (err)
                 console.log(err);
