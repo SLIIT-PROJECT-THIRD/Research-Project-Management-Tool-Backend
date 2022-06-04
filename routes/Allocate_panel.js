@@ -61,6 +61,42 @@ let mongoose = require('mongoose'),
         })
     })
 
+    //Get single submission type
+router.route('/edit-pm/:id').get((req, res) => {
+    PanelMemberSchema.findById(req.params.id, (error, data) => {
+          if (error) {
+              return next(error)
+            } else {
+              res.json(data)
+            }
+      })
+  })
+  //Update submission type
+  router.route('/update-pm/:id').put((req, res, next) => {
+    PanelMemberSchema.findByIdAndUpdate(req.params.id, {
+          $set: req.body
+    }, (error, data) => {
+      if (error) {
+        return next(error);
+        console.log(error)
+      } else {
+        res.json(data)
+        console.log(' update successfully !')
+      }
+      })
+  }) 
+  //DELETE submission type
+  router.route('/delete-pm/:id').delete((req, res, next ) =>{
+    PanelMemberSchema.findByIdAndRemove(req.params.id, (error, data) => {
+          if (error) {
+              return next(error);
+            } else {
+              res.status(200).json({
+                msg: data
+              })
+            }
+      })
 
+    })
 
     module.exports = router;

@@ -22,7 +22,7 @@ let PanelMemberSchema = new Schema({
     },
 
 },{timestamps: true} ,{
-    collection:  'allocatePanelMember'
+    collection:  'allocatepanelmember'
 } )
 
-module.exports = mongoose.model('allocatePanelMember', PanelMemberSchema);
+module.exports = mongoose.model('allocatepanelmember', PanelMemberSchema);
