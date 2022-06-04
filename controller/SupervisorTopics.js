@@ -34,3 +34,25 @@ exports.getById = (req, res) => {
     else res.json(group);
   });
 };
+
+// Unit test
+
+exports.getAllGroupsUnitTest = (req, res) => {
+  Group.find({})
+    // .limit(10)
+    .sort({ createdAt: -1 })
+    .exec((err, group) => {
+      if (err) console.log(err);
+      else res.json(group);
+    });
+};
+
+exports.getByIdUnitTest = (req, res) => {
+  const { id } = "629adff70b9f8733e9ec69d8";
+  console.log(id);
+  Group.findById({ _id: id }).exec((err, group) => {
+    if (err) console.log(err);
+    else res.json(group);
+  });
+};
+
