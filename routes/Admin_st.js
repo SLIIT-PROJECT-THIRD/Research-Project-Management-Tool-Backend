@@ -68,4 +68,27 @@ router.route('/delete-submission/:id').delete((req, res, next ) =>{
           }
     })
 })
+
+/*UNIT TESTS*/
+
+exports.getByIdSubTypeUnitTest = (req, res) =>{
+  const id ="6298d3fc550b9fad85d6cf20";
+  AdminSchema.findById({_id: id})
+  .exec((error, data) => {
+    if(error)
+      return(error);
+    else
+      return(data);
+  });
+};
+
+exports.getAllSubTypeUnitTest = (req, res) => {
+  AdminSchema.find({})
+  .exec((error, data) => {
+    if(error)
+    console.log(error);
+    else
+    res.json(data);
+  })
+}
 module.exports = router;

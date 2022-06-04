@@ -259,3 +259,49 @@ exports.deleteById = (req, res) => {
                 res.json(student);
         });
 };
+
+/*
+Name - UNIT TEST
+Date - 04/06/2022
+ */
+exports.getByIdUnitTest = (req, res) => {
+    const id = "629adf790b9f8733e9ec69cf";
+    Student.findById({ _id: id })
+        .exec((err, student) => {
+            if (err)
+                return (err);
+            else
+                return (student);
+        });
+};
+
+exports.getByUsernameAndPasswordUnitTest = (req, res) => {
+    const { sliitEmail } = "it20152266@my.sliit.lk";
+    const { password } = "lz71ynzFZq";
+    Student.findOne({ sliitEmail: sliitEmail, password: password })
+        .exec((err, student) => {
+            if (err) {
+                console.log(err);
+                res.status(400).json({
+                    error: 'Unautherized'
+                });
+            }
+            else {
+                res.json(student);
+                console.log(student);
+            }
+
+        });
+};
+
+exports.getAllStudentUnitTest = (req, res) => {
+    Student.find({})
+        // .limit(10)
+        .sort({ createdAt: -1 })
+        .exec((err, student) => {
+            if (err)
+                console.log(err);
+            else
+                res.json(student);
+        });
+};
