@@ -43,4 +43,27 @@ router.get("/files", (req, res, next) => {
         });
     });
 });
+
+/*UNIT TEST*/
+exports.getByIdfILEUnitTest = (req, res) =>{
+    const id ="62931d1cabc58a5c7ed330ed";
+    File.findById({_id: id})
+    .exec((error, data) => {
+      if(error)
+        return(error);
+      else
+        return(data);
+    });
+  };
+  
+  exports.getAllFileUnitTest = (req, res) => {
+    File.find({})
+    .exec((error, data) => {
+      if(error)
+      console.log(error);
+      else
+      res.json(data);
+    })
+  }
+
 module.exports = router;
