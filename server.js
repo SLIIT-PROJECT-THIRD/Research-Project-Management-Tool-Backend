@@ -14,6 +14,8 @@ const adminRoute = require('./routes/uprofile');
 const staffRoute = require('./routes/staff');
 const uploads = require('./middleware/upload');
 const fileUpload = require('./routes/fileUpload');
+const supervisorTopicsRouter = require('./routes/SupervisorTopics');
+const test = require('./routes/test');
 const AllocatePanel = require('./routes/Allocate_panel');
 const studentFileupload = require('./routes/studentFileUpload')
 const stu_upload = require('./middleware/studentUpload');
@@ -48,12 +50,14 @@ app.use('/admin', SubmissionRoute);
 app.use('/admin', adminRoute);
 app.use('/staff', staffRoute);
 app.use('/uploads', express.static('uploads'));
+app.use('/supervisorTopics', supervisorTopicsRouter);
 app.use('/admin',fileUpload);
 app.use('/admin',AllocatePanel);
 app.use('/admin',studentFileupload);
 app.use('/stu_uploads', express.static('stu_upload'));
 app.use('/uploads', express.static('uploads'))
 app.use('/admin', fileUpload);
+app.use( test);
 
 // Post
 const port = process.env.PORT || 8000;
