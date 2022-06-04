@@ -173,3 +173,80 @@ exports.deleteById = (req, res) => {
                 res.json(supervisorGroup);
         });
 };
+
+/*
+Name - UNIT TEST
+Date - 04/06/2022
+*/
+
+exports.getAllSupervisorsAndCoSupervisorsUnitTest = (req, res) => {
+    SupervisorGroup.find({})
+        // .limit(10)
+        .sort({ createdAt: -1 })
+        .exec((err, supervisor) => {
+            if (err)
+                res.json(err);
+            else
+                res.json(supervisor);
+        });
+};
+
+exports.getByIdUnitTest = (req, res) => {
+    const { id } = "629b204c6b5c68b7ce69be18;"
+    console.log(id)
+    SupervisorGroup.findById({ _id: id })
+        .exec((err, supervisor) => {
+            if (err)
+                res.json(err);
+            else
+                res.json(supervisor);
+        });
+};
+
+exports.getByGroupIdUnitTest = (req, res) => {
+    const { id } = "629b201d6b5c68b7ce69be07";
+    console.log(id)
+    SupervisorGroup.findOne({ groupId: id })
+        .exec((err, groupSupervisor) => {
+            if (err)
+                res.json(err);
+            else
+                res.json(groupSupervisor);
+        });
+};
+
+exports.getBySupervisorIdUnitTest = (req, res) => {
+    const { id } = "62936fb6b8bfb3c816817b88";
+    console.log(id)
+    SupervisorGroup.findOne({ supervisorId: id })
+        .exec((err, groupSupervisor) => {
+            if (err)
+                res.json(err);
+            else
+                res.json(groupSupervisor);
+        });
+};
+
+exports.getByCoSupervisorIdUnitTest = (req, res) => {
+    const { id } = "62937597b8bfb3c816817ba5";
+    console.log(id)
+    SupervisorGroup.findOne({ coSupervisorId: id })
+        .exec((err, groupSupervisor) => {
+            if (err)
+                res.json(err);
+            else
+                res.json(groupSupervisor);
+        });
+};
+
+exports.getByStatusUnitTest = (req, res) => {
+    const { id } = false;
+    console.log(id)
+    SupervisorGroup.findOne({ status: id })
+        .exec((err, groupSupervisor) => {
+            if (err)
+                res.json(err);
+            else
+                res.json(groupSupervisor);
+        });
+};

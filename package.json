@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "start": "nodemon server.js",
-    "build": "nodemon server.js"
+    "build": "nodemon server.js",
+    "test": "jest"
   },
   "author": "",
   "license": "ISC",
@@ -26,6 +27,10 @@
     "multer-gridfs-storage": "^5.0.2",
     "nodemailer": "^6.7.3",
     "nodemon": "^2.0.15",
+    "supertest": "^6.2.3",
     "unique-names-generator": "^4.7.1"
+  },
+  "devDependencies": {
+    "jest": "^28.1.0"
   }
 }
