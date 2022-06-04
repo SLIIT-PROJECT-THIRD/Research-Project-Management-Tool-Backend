@@ -15,8 +15,9 @@ const staffRoute = require('./routes/staff');
 const uploads = require('./middleware/upload');
 const fileUpload = require('./routes/fileUpload');
 const AllocatePanel = require('./routes/Allocate_panel');
-const studentFileupload = require('./routes/studentFileUpload')
+const studentFileupload = require('./routes/studentFileUpload');
 const stu_upload = require('./middleware/studentUpload');
+//const Marks = require('./routes/Marks');
 
 // App
 const app = express();
@@ -54,7 +55,7 @@ app.use('/admin',studentFileupload);
 app.use('/stu_uploads', express.static('stu_upload'));
 app.use('/uploads', express.static('uploads'))
 app.use('/admin', fileUpload);
-
+//app.use('/admin',Marks);
 // Post
 const port = process.env.PORT || 8000;
 app.listen(port, () => console.log(`Server is running on port ${port}`));
