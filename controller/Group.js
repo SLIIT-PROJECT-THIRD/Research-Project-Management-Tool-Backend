@@ -136,7 +136,7 @@ Date - 22/04/2022
 exports.getById = (req, res) => {
     const { id } = req.params
     console.log(id)
-    Group.findById({ _id })
+    Group.findById({ _id: id })
         .exec((err, group) => {
             if (err)
                 console.log(err);
